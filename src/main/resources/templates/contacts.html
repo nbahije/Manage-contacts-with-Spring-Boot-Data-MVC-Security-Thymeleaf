@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Demo Spring/Thymeleaf Application</title>
+<link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" 
+th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
 </head>
 <body>
-	<table border="1">
-		<tr>
-			<th>id</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>E-mail</th><th>Telephone</th>
-		</tr>
-		<tr th:each="p:${listContacts}">
-			<td th:text="${p.id}"></td>
-			<td th:text="${p.nom}"></td>
-			<td th:text="${p.prenom}"></td>
-			<td th:text="${p.datedenaissance}"></td>
-			<td th:text="${p.email}"></td>
-			<td th:text="${p.tel}"></td>
-		</tr>
-	</table>
+	<div class="container">
+		<div class="panel panel-primary" >
+			<div class="panel-heading">Liste des contacts</div>
+			<div class="panel-body">
+				<form th:action="@{/search}" method="get" value="${mc}">
+					<label>Recherche</label>
+					<input type="text" name="motCle">
+					<button type="submit" class="btn btn-primary">Chercher</button>
+				</form>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>Id</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>E-mail</th><th>Téléphone</th>
+					</tr>
+					<tr th:each="p:${listContacts}">
+						<td th:text="${p.id}"></td>
+						<td th:text="${p.nom}"></td>
+						<td th:text="${p.prenom}"></td>
+						<td th:text="${p.datedenaissance}"></td>
+						<td th:text="${p.email}"></td>
+						<td th:text="${p.tel}"></td>
+					</tr>
+				</table>
+				<ul class="nav nav-pills">
+					<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+						<a th:href="@{/search(page=${status.index})}" th:text="${status.index}"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
