@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo Spring/Thymeleaf Application</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>id</th><th>Nom</th><th>Prenom</th><th>Date de naissance</th><th>E-mail</th><th>Telephone</th>
+		</tr>
+		<tr th:each="p:${listContacts}">
+			<td th:text="${p.id}"></td>
+			<td th:text="${p.nom}"></td>
+			<td th:text="${p.prenom}"></td>
+			<td th:text="${p.datedenaissance}"></td>
+			<td th:text="${p.email}"></td>
+			<td th:text="${p.tel}"></td>
+		</tr>
+	</table>
+</body>
+</html>

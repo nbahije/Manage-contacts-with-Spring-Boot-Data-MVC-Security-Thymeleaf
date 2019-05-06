@@ -19,8 +19,8 @@ import com.example.entities.Contact;
 @SpringBootApplication
 public class DemoSpringDataBootMvcThymeleafApplication implements CommandLineRunner {
 
-	@Autowired
-	private ContactRepository contactRepository;
+//	@Autowired
+//	private ContactRepository contactRepository;
 	
 	/**
 	 * @param args
@@ -31,15 +31,15 @@ public class DemoSpringDataBootMvcThymeleafApplication implements CommandLineRun
 
 	@Override
 	public void run(String... args) throws Exception {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
-		contactRepository.save(new Contact("3SILA", "Mhmed", dateFormat.parse("12/04/1986"), "", "3sila@gmail.com", 0623015566));
-		contactRepository.save(new Contact("SMINA", "Ghdifa", dateFormat.parse("03/04/1950"), "", "smina@gmail.com", 0653015566));
-		contactRepository.save(new Contact("SAMATI", "Kiki", dateFormat.parse("02/06/1955"), "", "samati@hotmail.com", 067015566));
-		contactRepository.save(new Contact("KRIKIBA", "Toutou", dateFormat.parse("01/04/1931"), "", "krikiba@yahoo.fr", 0612121313));
-		
-		contactRepository.findAll().forEach(c->{
-			System.out.println(c.getNom());
-		});
+//		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
+//		contactRepository.save(new Contact("3SILA", "Mhmed", dateFormat.parse("12/04/1986"), "", "3sila@gmail.com", 0623015566));
+//		contactRepository.save(new Contact("SMINA", "Ghdifa", dateFormat.parse("03/04/1950"), "", "smina@gmail.com", 0653015566));
+//		contactRepository.save(new Contact("SAMATI", "Kiki", dateFormat.parse("02/06/1955"), "", "samati@hotmail.com", 067015566));
+//		contactRepository.save(new Contact("KRIKIBA", "Toutou", dateFormat.parse("01/04/1931"), "", "krikiba@yahoo.fr", 0612121313));
+//		
+//		contactRepository.findAll().forEach(c->{
+//			System.out.println(c.getNom());
+//		});
 	}
 
 }
