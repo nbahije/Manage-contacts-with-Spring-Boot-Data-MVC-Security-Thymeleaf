@@ -5,11 +5,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+
+import javax.validation.Valid;
 
 import com.example.dao.ContactRepository;
 import com.example.entities.Contact;
@@ -23,7 +29,6 @@ public class ContactController {
 	public ContactController() {}
 	
 	@RequestMapping(value="/index",method=RequestMethod.GET)
-	//@GetMapping("/index")
 	public String listContacts(Model model, 
 			@RequestParam(name="page",defaultValue="0") int page,
 			@RequestParam(name="motCle",defaultValue="") String motCle){
@@ -52,5 +57,19 @@ public class ContactController {
 		contactRepository.deleteById(id);
 		return "redirect:/search?page="+page+"&motCle="+motCle;
 	}
+	
+	@GetMapping(value="/formContact")
+	public String formContact(Model model) {
+		model.addAttribute("contact",new Contact());
+		return "formContact";
+	}
+	
+	@PostMapping(value="/addContact")
+	public String saveContact(Model model, @Valid Contact contact, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) return "formContact";
+		contactRepository.save(contact);
+		return "redirect:/search";
+	}
+	
 
 }

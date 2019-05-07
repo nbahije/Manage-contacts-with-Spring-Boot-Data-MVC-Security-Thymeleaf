@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="https://www.thymeleaf.org/"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
 <head>
 <meta charset="utf-8">
 <title>Demo Spring/Thymeleaf Application</title>
-<link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" 
-th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
+
 </head>
 <body>
-	<div class="container">
-		<div class="panel panel-primary" >
-			<div class="panel-heading">Liste des contacts</div>
-			<div class="panel-body">
-				<form th:action="@{/search}" method="get">
-					<label>Recherche</label>
-					<input type="text" name="motCle" th:value="${motCle}">
-					<button type="submit" class="btn btn-primary">Chercher</button>
-				</form>
-			</div>
-			<div class="panel-body">
-				<table class="table">
-					<tr>
-						<th>Id</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>E-mail</th><th>Téléphone</th><th>Action</th>
-					</tr>
-					<tr th:each="p:${listContacts}">
-						<td th:text="${p.id}"></td>
-						<td th:text="${p.nom}"></td>
-						<td th:text="${p.prenom}"></td>
-						<td th:text="${p.datedenaissance}"></td>
-						<td th:text="${p.email}"></td>
-						<td th:text="${p.tel}"></td>
-						<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer?')" th:text="Delete" 
+
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Liste des contacts</div>
+				<div class="panel-body">
+					<form th:action="@{/search}" method="get">
+						<label>Recherche</label> <input type="text" name="motCle"
+							th:value="${motCle}">
+						<button type="submit" class="btn btn-primary">Chercher</button>
+					</form>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Date de naissance</th>
+							<th>E-mail</th>
+							<th>Téléphone</th>
+							<th>Action</th>
+						</tr>
+						<tr th:each="p:${listContacts}">
+							<td th:text="${p.id}"></td>
+							<td th:text="${p.nom}"></td>
+							<td th:text="${p.prenom}"></td>
+							<td th:text="${p.datedenaissance}"></td>
+							<td th:text="${p.email}"></td>
+							<td th:text="${p.tel}"></td>
+							<td><a class="btn btn-danger"
+								onclick="return confirm('Etes-vous sûr de vouloir supprimer?')"
+								th:text="Delete"
 								th:href="@{/delete(id=${p.id}, page=${currentPage}, motCle=${motCle})}"></a></td>
-					</tr>
-				</table>
-				<ul class="nav nav-pills">
-					<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-						<a th:href="@{/search(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
-					</li>
-				</ul>
+						</tr>
+					</table>
+					<ul class="nav nav-pills">
+						<li th:class="${currentPage==status.index}?'active':''"
+							th:each="page,status:${pages}"><a
+							th:href="@{/search(page=${status.index}, motCle=${motCle})}"
+							th:text="${status.index}"></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-	
+
+
 </body>
 </html>

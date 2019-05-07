@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>Nouveau Contact</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="col-md-5 col-md-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Ajout d'un contact</div>
+				<div class="panel-body">
+					<form th:action="@{/addContact}" method="post">
+						<div class="form-group">
+							<label class="form-label">Nom*</label> <input
+								class="form-control" name="nom" th:value="${contact.nom}">
+							<span th:errors="${contact.nom}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Prenom*</label> <input
+								class="form-control" name="prenom" th:value="${contact.prenom}">
+							<span th:errors="${contact.prenom}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Téléphone*</label> <input type="tel"
+								class="form-control" name="tel" th:value="${contact.tel}">
+							<span th:errors="${contact.tel}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Date de naissance</label> <input
+								type="date" class="form-control" name="dateDeNaissance"
+								th:value="${contact.datedenaissance}"> <span
+								th:errors="${contact.datedenaissance}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="form-label">E-mail</label> <input type="email"
+								class="form-control" name="email" th:value="${contact.email}">
+							<span th:errors="${contact.email}" class="text-danger"></span>
+						</div>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

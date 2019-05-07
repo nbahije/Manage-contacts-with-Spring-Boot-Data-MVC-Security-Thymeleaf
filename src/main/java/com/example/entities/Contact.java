@@ -3,37 +3,59 @@ package com.example.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author BAHIJE
  * @date 29 avr. 2019 12:53:54
+ * @see 07/05/2019
  */
 @Entity
 public class Contact implements Serializable{
 	
+	/**
+	 * Contact Entity
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue
 	private long id;
+	@NotNull
+	@Size(min=2, max=70, message="{nom.validate}")
 	private String nom;
+	@NotNull
+	@Size(min=2, max=70, message="{prenom.validate}")
 	private String prenom;
 	@Temporal(TemporalType.DATE)
 	private Date datedenaissance;
 	private String photo;
+	@Email
 	private String email;
+	@NotNull
+	//@Pattern(regexp="(^$|[0-9]{10})")
 	private long tel;
 	
 	public Contact(String nom, String prenom, Date datedenaissance, String photo, String email, long tel) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.datedenaissance = datedenaissance;
 		this.photo = photo;
+		this.email = email;
+		this.tel = tel;
+	}
+	
+	public Contact(String nom, String prenom, Date datedenaissance, String email, long tel) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.datedenaissance = datedenaissance;
 		this.email = email;
 		this.tel = tel;
 	}
