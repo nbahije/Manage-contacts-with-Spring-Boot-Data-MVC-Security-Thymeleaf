@@ -11,16 +11,16 @@ th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
 		<div class="panel panel-primary" >
 			<div class="panel-heading">Liste des contacts</div>
 			<div class="panel-body">
-				<form th:action="@{/search}" method="get" value="${mc}">
+				<form th:action="@{/search}" method="get">
 					<label>Recherche</label>
-					<input type="text" name="motCle">
+					<input type="text" name="motCle" th:value="${motCle}">
 					<button type="submit" class="btn btn-primary">Chercher</button>
 				</form>
 			</div>
 			<div class="panel-body">
 				<table class="table">
 					<tr>
-						<th>Id</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>E-mail</th><th>Téléphone</th>
+						<th>Id</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>E-mail</th><th>Téléphone</th><th>Action</th>
 					</tr>
 					<tr th:each="p:${listContacts}">
 						<td th:text="${p.id}"></td>
@@ -29,11 +29,13 @@ th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
 						<td th:text="${p.datedenaissance}"></td>
 						<td th:text="${p.email}"></td>
 						<td th:text="${p.tel}"></td>
+						<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer?')" th:text="Delete" 
+								th:href="@{/delete(id=${p.id}, page=${currentPage}, motCle=${motCle})}"></a></td>
 					</tr>
 				</table>
 				<ul class="nav nav-pills">
 					<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-						<a th:href="@{/search(page=${status.index})}" th:text="${status.index}"></a>
+						<a th:href="@{/search(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
 					</li>
 				</ul>
 			</div>

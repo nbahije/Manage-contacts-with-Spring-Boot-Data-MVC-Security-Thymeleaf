@@ -38,14 +38,19 @@ public class ContactController {
 	@RequestMapping(value="/search",method=RequestMethod.GET)
 	public String search(Model model, 
 			@RequestParam(name="page",defaultValue="0") int page,
-			@RequestParam(name="motCle",defaultValue="") String mc){
-		Page<Contact> pageContacts = contactRepository.findByNomContains(mc, PageRequest.of(page, 5));
+			@RequestParam(name="motCle",defaultValue="") String motCle){
+		Page<Contact> pageContacts = contactRepository.findByNomContains(motCle, PageRequest.of(page, 5));
 		model.addAttribute("listContacts", pageContacts.getContent());
 		model.addAttribute("pages",new int [pageContacts.getTotalPages()]);
 		model.addAttribute("currentPage",page);
-		model.addAttribute("mc",mc);
+		model.addAttribute("motCle",motCle);
 		return "contacts";
 	}
 	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(Long id, int page, String motCle) {
+		contactRepository.deleteById(id);
+		return "redirect:/search?page="+page+"&motCle="+motCle;
+	}
 
 }
