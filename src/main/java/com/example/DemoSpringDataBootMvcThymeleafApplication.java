@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
 
+import com.example.config.CustomMessageSourceConfiguration;
 import com.example.dao.ContactRepository;
 import com.example.entities.Contact;
 
@@ -21,6 +23,8 @@ public class DemoSpringDataBootMvcThymeleafApplication implements CommandLineRun
 
 //	@Autowired
 //	private ContactRepository contactRepository;
+	
+	private CustomMessageSourceConfiguration customMessageSourceConfiguration = new CustomMessageSourceConfiguration();
 	
 	/**
 	 * @param args

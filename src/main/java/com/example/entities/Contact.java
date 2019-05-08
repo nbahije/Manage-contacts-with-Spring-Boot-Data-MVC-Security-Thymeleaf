@@ -27,10 +27,10 @@ public class Contact implements Serializable{
 	@Id @GeneratedValue
 	private long id;
 	@NotNull
-	@Size(min=2, max=70, message="{nom.validate}")
+	@Size(min=2, max=70, message="{Size.contact.nom}")
 	private String nom;
 	@NotNull
-	@Size(min=2, max=70, message="{prenom.validate}")
+	@Size(min=2, max=70, message="{Size.contact.prenom}")
 	private String prenom;
 	@Temporal(TemporalType.DATE)
 	private Date datedenaissance;
