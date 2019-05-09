@@ -12,6 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * @author BAHIJE
  * @date 29 avr. 2019 12:53:54
@@ -33,6 +35,7 @@ public class Contact implements Serializable{
 	@Size(min=2, max=70, message="{Size.contact.prenom}")
 	private String prenom;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date datedenaissance;
 	private String photo;
 	@Email

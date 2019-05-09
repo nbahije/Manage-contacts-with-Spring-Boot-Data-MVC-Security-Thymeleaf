@@ -42,6 +42,9 @@
 								onclick="return confirm('Etes-vous sûr de vouloir supprimer?')"
 								th:text="Delete"
 								th:href="@{/delete(id=${p.id}, page=${currentPage}, motCle=${motCle})}"></a></td>
+							<td><a class="btn btn-danger"
+								th:text="Edit"
+								th:href="@{/formEditContact(id=${p.id})}"></a></td>
 						</tr>
 					</table>
 					<ul class="nav nav-pills">
