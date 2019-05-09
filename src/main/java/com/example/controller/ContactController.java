@@ -34,7 +34,7 @@ public class ContactController {
 	public ContactController() {
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
 	public String listContacts(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "motCle", defaultValue = "") String motCle) {
 		Page<Contact> pageContacts = contactRepository.findAll(PageRequest.of(page, 5));
@@ -45,7 +45,7 @@ public class ContactController {
 	}
 
 	// Recherche par mot clé
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/search", method = RequestMethod.GET)
 	public String search(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "motCle", defaultValue = "") String motCle) {
 		Page<Contact> pageContacts = contactRepository.findByNomContains(motCle, PageRequest.of(page, 5));
@@ -56,31 +56,45 @@ public class ContactController {
 		return "contacts";
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/delete", method = RequestMethod.GET)
 	public String delete(Long id, int page, String motCle) {
 		contactRepository.deleteById(id);
 		return "redirect:/search?page=" + page + "&motCle=" + motCle;
 	}
 
-	@GetMapping(value = "/formContact")
+	@GetMapping(value = "/admin/formContact")
 	public String formContact(Model model) {
 		model.addAttribute("contact", new Contact());
 		return "formContact";
 	}
 
-	@PostMapping(value = "/addContact")
+	@PostMapping(value = "/admin/addContact")
 	public String saveContact(Model model, @Valid Contact contact, BindingResult bindingResult) throws ParseException {
 		if (bindingResult.hasErrors())
 			return "formContact";
 		contactRepository.save(contact);
-		return "redirect:/search";
+		return "redirect:/user/search";
 	}
 
-	@GetMapping(value = "/formEditContact")
+	@GetMapping(value = "/admin/formEditContact")
 	public String formEditContact(Model model, Long id) {
 		
 		model.addAttribute("contact", contactRepository.findById(id).get());
 		return "formEditContact";
 	}
+	
+	@GetMapping("/")
+	public String byDefault() {
+		return "redirect:/user/search";
+	}
+	
+	@GetMapping("/403")
+	public String httpExceptionErrorPage() {
+		return "403";
+	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }

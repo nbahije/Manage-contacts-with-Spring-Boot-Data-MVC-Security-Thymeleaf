@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" 
-th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
+th:href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
 <head>
 <meta charset="utf-8">
 <title>Page Template</title>
@@ -10,16 +10,16 @@ th:href="@{node_modules/bootstrap/dist/css/bootstrap.min.css}">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" th:href="@{/search}">Gestion des contacts</a>
+      <a class="navbar-brand" th:href="@{/user/search}">Gestion des contacts</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a th:href="@{/search}">Acceuil</a></li>
-      <li><a th:href="@{/formContact}">Ajout contact</a></li>
-      <li><a th:href="@{/search}">Liste contact</a></li>
+      <li class="active"><a th:href="@{/user/search}">Acceuil</a></li>
+      <li><a th:href="@{/admin/formContact}">Ajout contact</a></li>
+      <li><a th:href="@{/user/search}">Liste contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+      <li><a th:href="@{/login?logout}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
