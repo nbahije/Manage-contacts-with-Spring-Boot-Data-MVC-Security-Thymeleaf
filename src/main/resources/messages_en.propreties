@@ -1,0 +1,4 @@
+# messages_en.properties
+Size.contact.nom=Name between 2 et 70.
+messagetest=MESSAGE
+Size.contact.prenom=Lastame between 2 et 70.

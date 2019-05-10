@@ -1,5 +1,6 @@
 # messages_fr.properties
 Size.contact.nom=Nom compris entre 2 et 70.
 Size.contact.prenom=Prenom compris entre 2 et 70.
+messagetest=MESSAGE
 #prenom.notNull=Prénom obligatoir
 #msg_confirm_warning=Confirmation d'ajout du contact.

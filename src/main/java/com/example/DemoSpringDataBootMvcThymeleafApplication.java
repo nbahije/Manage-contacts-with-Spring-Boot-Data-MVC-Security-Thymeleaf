@@ -33,12 +33,12 @@ public class DemoSpringDataBootMvcThymeleafApplication {
 	 */
 	public static void main(String[] args) {
 
-//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ApplicationContext applicationContext = SpringApplication.run(DemoSpringDataBootMvcThymeleafApplication.class, args);
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+//		ApplicationContext applicationContext = SpringApplication.run(DemoSpringDataBootMvcThymeleafApplication.class, args);
+		System.out.println(applicationContext.getMessage("messagetest", null, "hhhhhh", null));
 //		for (String name : applicationContext.getBeanDefinitionNames()) {
 //			System.out.println(name);
 //		}
-		// new ClassPathXmlApplicationContext("classpath:/src/applicationContext.xml");
 		
 	}
 
